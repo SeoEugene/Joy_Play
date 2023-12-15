@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 // 스키마 만들기
-const { User } = require("../model/User.js");
-const { Counter } = require("../model/Counter.js");
+const { User } = require("../Model/User.js");
+const { Counter } = require("../Model/Counter.js");
 
 router.post("/join", (req, res) => {
     let temp = req.body;

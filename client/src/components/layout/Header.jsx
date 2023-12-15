@@ -1,7 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import firebase from '../../firebase.js'
 
 const Header = () => {
+    // 유저 정보 가져오기
+    const user = useSelector(state => state.user)
+    const navigate = useNavigate();
+
+    const LogoutHandler = () => {
+        firebase.auth().signOut();
+        navigate("/");
+    }
+
     return (
         <>
             <header id="header" role="banner">
@@ -15,15 +26,20 @@ const Header = () => {
                         </ul>
                     </nav>
                 </div>
-                <div className='header2'>
-                    <ul>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/join">join</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
-
-                    </ul>
+                <div className='header2 right'>
+                    {user.accessToken === "" ? (
+                        <ul>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/join">join</Link></li>
+                        </ul>
+                    ) : (
+                        <ul>
+                            <li>{user.displayName}님 어서와요</li>
+                            <li><Link onClick={() => LogoutHandler()}>Logout</Link></li>
+                        </ul>
+                    )}
                 </div>
-            </header>
+            </header >
             <div className="banner">
             </div>
         </>

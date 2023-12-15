@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
 // 스키마 정의
-const postSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    postNum: Number,
-    image: String,
-}, { collection: "posts" });
+const postSchema = new mongoose.Schema(
+    {
+        title: String,
+        content: String,
+        postNum: Number,
+        image: String,
+        author: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    }, { collection: "posts" });
 
 // 모델 생성
 const Post = mongoose.model('Post', postSchema);
