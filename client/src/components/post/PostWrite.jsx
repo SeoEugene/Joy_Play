@@ -77,11 +77,11 @@ const PostWrite = () => {
                     <button
                         type="submit"
                         className="btn_style2 mt30"
-                        onClick={(e) => {
-                            onSubmit(e);
-                        }}>글 작성하기</button>
+                        onClick={(e) =>
+                            onSubmit(e)
+                        }>글 작성하기</button>
                 </div>
-            </form>
+            </form >
         </div >
     )
 }

@@ -4,10 +4,8 @@ import React from 'react'
 const PostImage = (props) => {
 
     const FileUpload = (e) => {
-        // console.log(e.target.files);
         const formData = new FormData();
         formData.append("file", (e.target.files[0]));
-        // for (const keyValue of formData) console.log(keyValue)
 
         axios
             .post("/api/post/image/upload", formData)
